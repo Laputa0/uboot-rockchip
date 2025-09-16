@@ -126,10 +126,6 @@ jobs:
           cd u-boot
           make mrproper
           make ${{ matrix.board.config }}
-          echo 'CONFIG_SPL_SPI=y' >> .config
-          echo 'CONFIG_SPL_SPI_LOAD=y' >> .config
-          echo 'CONFIG_SYS_SPI_U_BOOT_OFFS=0x100000' >> .config
-          echo 'CONFIG_ROCKCHIP_SPI_IMAGE=y' >> .config
           make -j$(nproc) KCFLAGS="-Werror"
           tools/mkimage -l u-boot.itb
           mkdir -p ../output/${{ matrix.board.name }}/base-files
